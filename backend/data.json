@@ -1,0 +1,35 @@
+[
+  {
+    "roll": 1,
+    "className": "12A",
+    "session": "2025",
+    "attendance": [
+      {
+        "date": "2026-04-19",
+        "status": "Present"
+      }
+    ]
+  },
+  {
+    "roll": 2,
+    "className": "12A",
+    "session": "2025",
+    "attendance": [
+      {
+        "date": "2026-04-19",
+        "status": "Absent"
+      }
+    ]
+  },
+  {
+    "roll": 3,
+    "className": "12A",
+    "session": "2025",
+    "attendance": [
+      {
+        "date": "2026-04-19",
+        "status": "Present"
+      }
+    ]
+  }
+]

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+  <h1>Teacher Panel</h1>
+
+  <div class="card">
+    <h3>Add Student</h3>
+    <input id="name" placeholder="Name">
+    <input id="roll" placeholder="Roll">
+    <button onclick="addStudent()">Add Student</button>
+  </div>
+
+  <div class="card">
+    <h3>Attendance</h3>
+    <input id="roll2" placeholder="Roll">
+    <button onclick="mark()">Mark Present</button>
+    <button onclick="markAbsent()">Mark Absent</button>
+<button onclick="undo()">Undo Last</button>
+  </div>
+</div>
+
+<script>
+    async function markAbsent() {
+  await fetch("http://localhost:3000/mark-attendance", {
+    method: "POST",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify({
+      roll: parseInt(roll2.value),
+      status: "Absent"
+    })
+  });
+  alert("Marked Absent");
+}
+async function addStudent() {
+  await fetch("http://localhost:3000/add-student", {
+    method: "POST",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify({
+      name: name.value,
+      roll: parseInt(roll.value),
+      className: "12A",
+      session: "2025"
+    })
+  });
+  alert("Student added");
+}
+
+async function mark() {
+  await fetch("http://localhost:3000/mark-attendance", {
+    method: "POST",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify({
+      roll: parseInt(roll2.value),
+      status: "Present"
+    })
+  });
+  alert("Marked");
+}
+
+async function undo() {
+  await fetch("http://localhost:3000/undo-attendance", {
+    method: "POST",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify({
+      roll: parseInt(roll2.value)
+    })
+  });
+  alert("Undo done");
+}
+</script>
+
+</body>
+</html>

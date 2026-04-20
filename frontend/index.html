@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Attendance System</title>
+</head>
+<body>
+  <h1>Attendance System</h1>
+
+  <h2>Add Student</h2>
+  <input id="name" placeholder="Name">
+  <input id="roll" placeholder="Roll">
+  <button onclick="addStudent()">Add</button>
+
+  <h2>Mark Attendance</h2>
+  <input id="roll2" placeholder="Roll">
+  <button onclick="mark()">Present</button>
+
+  <script>
+    async function addStudent() {
+      await fetch("http://localhost:3000/add-student", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({
+          name: document.getElementById("name").value,
+          roll: parseInt(document.getElementById("roll").value),
+          className: "12A",
+          session: "2025"
+        })
+      });
+      alert("Added");
+    }
+
+    async function mark() {
+      await fetch("http://localhost:3000/mark-attendance", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({
+          roll: parseInt(document.getElementById("roll2").value),
+          status: "Present"
+        })
+      });
+      alert("Marked");
+    }
+  </script>
+</body>
+</html>

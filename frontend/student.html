@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+  <h1>Student Dashboard</h1>
+
+  <button onclick="logout()">Logout</button>
+
+  <div id="result" class="card">Loading...</div>
+</div>
+
+<script>
+window.onload = async () => {
+  const roll = localStorage.getItem("roll");
+
+  if (!roll) {
+    alert("Please login first");
+    window.location.href = "login.html";
+    return;
+  }
+
+  try {
+    const res = await fetch("http://localhost:3000/student-dashboard/" + roll);
+    const data = await res.json();
+
+    if (data.message) {
+      result.innerHTML = data.message;
+      return;
+    }
+
+    result.innerHTML = `
+      <h3>${data.name || "Student"}</h3>
+      <p><strong>Roll:</strong> ${data.roll}</p>
+      <p><strong>Attendance:</strong> ${data.percentage}</p>
+
+      <ul>
+        ${data.attendance.length > 0 
+          ? data.attendance.map(a => `<li>${a.date} - ${a.status}</li>`).join("")
+          : "<li>No attendance records</li>"
+        }
+      </ul>
+    `;
+  } catch (err) {
+    result.innerHTML = "Error loading data";
+  }
+};
+
+// 🔐 Logout function
+function logout() {
+  localStorage.clear();
+  window.location.href = "login.html";
+}
+</script>
+
+</body>
+</html>
