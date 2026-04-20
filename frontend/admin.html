@@ -26,7 +26,7 @@
 
 <script>
     async function markAbsent() {
-  await fetch("http://localhost:3000/mark-attendance", {
+  await fetch("https://attendance-system-tv9i.onrender.com/mark-attendance", {
     method: "POST",
     headers: {"Content-Type": "application/json"},
     body: JSON.stringify({
@@ -37,7 +37,7 @@
   alert("Marked Absent");
 }
 async function addStudent() {
-  await fetch("http://localhost:3000/add-student", {
+  await fetch("https://attendance-system-tv9i.onrender.com/add-student", {
     method: "POST",
     headers: {"Content-Type": "application/json"},
     body: JSON.stringify({
@@ -51,7 +51,7 @@ async function addStudent() {
 }
 
 async function mark() {
-  await fetch("http://localhost:3000/mark-attendance", {
+  await fetch("https://attendance-system-tv9i.onrender.com/mark-attendance", {
     method: "POST",
     headers: {"Content-Type": "application/json"},
     body: JSON.stringify({
@@ -63,7 +63,7 @@ async function mark() {
 }
 
 async function undo() {
-  await fetch("http://localhost:3000/undo-attendance", {
+  await fetch("https://attendance-system-tv9i.onrender.com/undo-attendance", {
     method: "POST",
     headers: {"Content-Type": "application/json"},
     body: JSON.stringify({
