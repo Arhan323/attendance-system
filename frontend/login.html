@@ -24,7 +24,7 @@
 
 <script>
 async function adminLogin() {
-  const res = await fetch("http://localhost:3000/login", {
+  const res = await fetch("https://attendance-system-tv9i.onrender.com/login", {
     method: "POST",
     headers: {"Content-Type": "application/json"},
     body: JSON.stringify({
@@ -40,7 +40,7 @@ async function adminLogin() {
 }
 
 async function studentLogin() {
-  const res = await fetch("http://localhost:3000/login", {
+  const res = await fetch("https://attendance-system-tv9i.onrender.com/login", {
     method: "POST",
     headers: {"Content-Type": "application/json"},
     body: JSON.stringify({
