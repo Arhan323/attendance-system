@@ -24,7 +24,7 @@ window.onload = async () => {
   }
 
   try {
-    const res = await fetch("http://localhost:3000/student-dashboard/" + roll);
+    const res = await fetch("https://attendance-system-tv9i.onrender.com/student-dashboard/" + roll);
     const data = await res.json();
 
     if (data.message) {
