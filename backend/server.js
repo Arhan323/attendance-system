@@ -11,7 +11,6 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// 📁 Load data
 let students = [];
 
 try {
@@ -21,7 +20,6 @@ try {
     students = [];
 }
 
-// 💾 Save data
 function saveData() {
     fs.writeFileSync("backend/data.json", JSON.stringify(students, null, 2));
 }
@@ -49,12 +47,10 @@ app.post("/add-student", (req, res) => {
     res.json({ message: "Student added", student });
 });
 
-// 📋 Get all students
 app.get("/students", (req, res) => {
     res.json(students);
 });
 
-// 🔍 Get student by roll
 app.get("/student/:roll", (req, res) => {
     const roll = parseInt(req.params.roll);
 
@@ -67,7 +63,6 @@ app.get("/student/:roll", (req, res) => {
     res.json(student);
 });
 
-// 📅 Mark attendance
 app.post("/mark-attendance", (req, res) => {
     const { roll, status } = req.body;
 
@@ -95,7 +90,6 @@ app.post("/mark-attendance", (req, res) => {
     res.json({ message: "Attendance marked", student });
 });
 
-// ✏️ Edit attendance
 app.post("/edit-attendance", (req, res) => {
     const { roll, date, status } = req.body;
 
@@ -117,7 +111,7 @@ app.post("/edit-attendance", (req, res) => {
 
     res.json({ message: "Attendance updated", student });
 });
-// ↩️ Undo last attendance
+
 app.post("/undo-attendance", (req, res) => {
     const { roll } = req.body;
 
@@ -140,7 +134,7 @@ app.post("/undo-attendance", (req, res) => {
         removed
     });
 });
-// 🎓 Student dashboard data
+
 app.get("/student-dashboard/:roll", (req, res) => {
     const roll = parseInt(req.params.roll);
 
@@ -161,7 +155,7 @@ app.get("/student-dashboard/:roll", (req, res) => {
         percentage: percentage.toFixed(2) + "%"
     });
 });
-// 📊 Attendance percentage
+
 app.get("/attendance/:roll", (req, res) => {
     const roll = parseInt(req.params.roll);
 
@@ -183,7 +177,7 @@ app.get("/attendance/:roll", (req, res) => {
         percentage: percentage.toFixed(2) + "%"
     });
 });
-// 🔐 Login system
+
 app.post("/login", (req, res) => {
     const { role, username, password, roll } = req.body;
 
@@ -209,7 +203,6 @@ app.post("/login", (req, res) => {
     res.json({ success: false, message: "Invalid role" });
 });
 
-// 🧾 Logs (basic)
 let logs = [];
 
 app.post("/log", (req, res) => {
@@ -221,7 +214,6 @@ app.get("/logs", (req, res) => {
     res.json(logs);
 });
 
-// 🚀 Start server
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
