@@ -24,7 +24,6 @@ function saveData() {
     fs.writeFileSync("backend/data.json", JSON.stringify(students, null, 2));
 }
 
-// ➕ Add student
 app.post("/add-student", (req, res) => {
     const { name, roll, className, session } = req.body;
 
@@ -181,7 +180,6 @@ app.get("/attendance/:roll", (req, res) => {
 app.post("/login", (req, res) => {
     const { role, username, password, roll } = req.body;
 
-    // 👨‍🏫 Admin login
    if (role === "admin") {
     if (username === ADMIN.username && password === ADMIN.password) {
         return res.json({ success: true, role: "admin" });
@@ -189,7 +187,7 @@ app.post("/login", (req, res) => {
         return res.json({ success: false, message: "Invalid admin credentials" });
     }
 }
-    // 🎓 Student login
+
     if (role === "student") {
         const student = students.find(s => s.roll === roll);
 
